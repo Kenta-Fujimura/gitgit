@@ -41,7 +41,7 @@ public class Player{
 		int winCount = 0;
 		int win;
 		if(nums[0] == nums[1] && nums[1] == nums[2]){winCount += 1;}
-        if(nums[3] == nums[4] && nums[4] == nums[5]){winCount += 1;}
+		if(nums[3] == nums[4] && nums[4] == nums[5]){winCount += 1;}
 		if(nums[6] == nums[7] && nums[7] == nums[8]){winCount += 1;}
 		if(nums[0] == nums[3] && nums[3] == nums[6]){winCount += 1;}
 		if(nums[1] == nums[4] && nums[4] == nums[7]){winCount += 1;}

@@ -15,10 +15,15 @@ public class Player{
 	}
 
 	public void greet(){
-		System.out.printf("こんにちは%s(%d才)さん。%n",this.name,this.age);
+		System.out.printf("こんにちは%s(%d歳)さん。%n",this.name,this.age);
 	}
 	
+	public static void clearScreen() {  
+    	System.out.print("\033[H\033[2J");  
+    	System.out.flush();  
+	}  
 	public void bet(int bet){
+		clearScreen();
 		coin = coin - bet;	
 		int nums[] = new int [9];
 		for(int i=0;i<9;i++){
@@ -33,17 +38,20 @@ public class Player{
 				}
 		}
 		//当たり判定
-		if(nums[0] == nums[1] && nums[1] == nums[2]
-		|| nums[3] == nums[4] && nums[4] == nums[5]
-		|| nums[6] == nums[7] && nums[7] == nums[8]
-		|| nums[0] == nums[3] && nums[3] == nums[6]
-		|| nums[1] == nums[4] && nums[4] == nums[7]
-		|| nums[2] == nums[5] && nums[5] == nums[8]
-		|| nums[0] == nums[4] && nums[4] == nums[8]
-		|| nums[2] == nums[4] && nums[4] == nums[6]
-		){
-			coin = coin + bet * 12;	
-			System.out.println("BINGO!!  win:"+ bet * 12);
+		int winCount = 0;
+		int win;
+		if(nums[0] == nums[1] && nums[1] == nums[2]){winCount += 1;}
+        if(nums[3] == nums[4] && nums[4] == nums[5]){winCount += 1;}
+		if(nums[6] == nums[7] && nums[7] == nums[8]){winCount += 1;}
+		if(nums[0] == nums[3] && nums[3] == nums[6]){winCount += 1;}
+		if(nums[1] == nums[4] && nums[4] == nums[7]){winCount += 1;}
+		if(nums[2] == nums[5] && nums[5] == nums[8]){winCount += 1;}
+		if(nums[0] == nums[4] && nums[4] == nums[8]){winCount += 1;}
+		if(nums[2] == nums[4] && nums[4] == nums[6]){winCount += 1;}
+	    if(winCount > 0){
+			win = bet * 12 * winCount;
+			coin = coin + win;
+			System.out.println(winCount + " LINE BINGO!!  win:"+ win);
 		}else{
 			System.out.println("boo");
 		}
